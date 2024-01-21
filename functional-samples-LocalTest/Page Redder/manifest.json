@@ -1,0 +1,15 @@
+{
+  "name": "Page Redder",
+  "version": "2.0",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "action": {
+    "default_title": "Make this page red"
+  },
+  "manifest_version": 3
+}
