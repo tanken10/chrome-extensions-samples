@@ -1,6 +1,7 @@
 {
   "name": "Page Redder",
   "version": "2.0",
+  "description": "タブ上の拡張機能アイコンを押すと背景色が赤色になる",
   "permissions": [
     "activeTab",
     "scripting"
