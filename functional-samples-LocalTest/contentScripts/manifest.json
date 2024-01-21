@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "My extension",
+    "name": "content-script　静的Webでの動作",
     "version": "1.0.0",
     "description": "A basic example extension with only required keys",
     "content_scripts": [
