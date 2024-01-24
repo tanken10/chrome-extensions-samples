@@ -18,7 +18,11 @@ var callback = function(mutationsList, observer) {
                         var parentDiv = button.closest('.qs-asin');
                         if (parentDiv) {
                             var asin = parentDiv.querySelector('.qs-value').textContent;
-                            alert("ASINコード：" + asin);
+                            console.log("ASINコード：" + asin);
+                            // alert("ASINコード：" + asin);
+
+                            // ここでは文字列('hello')でメッセージを送ってますが、オブジェクトでもよい
+                            chrome.runtime.sendMessage(asin);
                         }
                     });
                     // イベントリスナー追加済みのマークを設定
