@@ -5,7 +5,8 @@
     "description": "クリックした金額のテキストを取得して、コンソールに出力",
     "content_scripts": [
         {
-            "matches": ["file:///*"
+            "matches": ["file:///*",
+                        "https://www.amazon.co.jp/*"
                     ],
             "js": [
                 "background.js",

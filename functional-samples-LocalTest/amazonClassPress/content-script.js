@@ -1,45 +1,36 @@
-// すべてのクラスが "clickable-span" である span 要素を取得
-var clickableSpansData = document.querySelectorAll('.a-color-base.a-text-bold');
+// 監視対象の要素を選択
+var targetNode = document.body;
 
-// 各 span 要素にクリックイベントリスナーを追加
-clickableSpansData.forEach(span => {
-    span.addEventListener('click', function () {
-        // クリックされたときに実行するコードをここに記述
-        alert('日付がクリックされました！');
-        // 日付が読み取れた内容を表示
-        var clickSpansDataElement = document.querySelector('.a-color-base.a-text-bold');
-        var clickSpansDataValue = clickSpansDataElement.textContent;
-        alert(clickSpansDataValue);
-        // 他の処理を追加できます
-        // backgroundスクリプトへメッセージ送信
-        chrome.runtime.sendMessage('日付クリック:' + clickSpansDataValue, (receive) => {
-            // 送り返されるものがなければ、このコールバックは必要ない
-            console.log(receive); // sendResponse で送り返された {} 空のObject
-        });
-    });
-});
+// 監視の設定
+var config = { childList: true, subtree: true };
 
+// コールバック関数を定義
+var callback = function(mutationsList, observer) {
+    // すべての変更を確認
+    for(var mutation of mutationsList) {
+        if (mutation.type == 'childList') {
+            // 'qs-copy' クラスを持つ span 要素を検索
+            var copyButtons = document.querySelectorAll('.qs-copy');
+            copyButtons.forEach(function(button) {
+                // イベントリスナーがまだ追加されていないことを確認
+                if (!button.hasAttribute('data-listener-added')) {
+                    button.addEventListener('click', function() {
+                        var parentDiv = button.closest('.qs-asin');
+                        if (parentDiv) {
+                            var asin = parentDiv.querySelector('.qs-value').textContent;
+                            alert("ASINコード：" + asin);
+                        }
+                    });
+                    // イベントリスナー追加済みのマークを設定
+                    button.setAttribute('data-listener-added', 'true');
+                }
+            });
+        }
+    }
+};
 
-// すべてのクラスが "clickable-span" である span 要素を取得
-var clickableSpansPrice = document.querySelectorAll('.a-price-whole');
+// MutationObserverのインスタンスを作成
+var observer = new MutationObserver(callback);
 
-// 各 span 要素にクリックイベントリスナーを追加
-clickableSpansPrice.forEach(span => {
-    span.addEventListener('click', function () {
-        // クリックされたときに実行するコードをここに記述
-        alert('金額がクリックされました！');
-        // 日付が読み取れた内容を表示
-        var clickSpansPriceElement = document.querySelector('.a-price-whole');
-        var clickSpansPriceValue = clickSpansPriceElement.textContent;
-        alert(clickSpansPriceValue);
-        // 他の処理を追加できます
-        // backgroundスクリプトへメッセージ送信
-        chrome.runtime.sendMessage('金額クリック:' + clickSpansPriceValue, (receive) => {
-            // 送り返されるものがなければ、このコールバックは必要ない
-            console.log(receive); // sendResponse で送り返された {} 空のObject
-        });
-    });
-});
-
-
-
+// 監視を開始
+observer.observe(targetNode, config);

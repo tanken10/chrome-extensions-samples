@@ -1,0 +1,36 @@
+Javascriptを作成してください。
+#コード目的"""
+・Amazon商品一覧から特定のspan(class)を押したときに、別span(class)のテキストデータを取得する
+・取得したテキストデータをアラートメッセージとして出力
+"""
+#環境"""
+Chome拡張機能のコンテンツスクリプトとして使用
+"""
+#AmazonのHTMLコード抜粋"""
+<div data-asin="B0CBGY8J9Y" data-index="3" data-uuid="05f91bb3-ee84-41ed-a860-9a7ba2332058" data-component-type="s-search-result" class="sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-20" data-component-id="16" style="background-color: rgb(221, 221, 221);" data-cel-widget="search_result_2"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-3" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-results_2" data-csa-c-pos="2" data-csa-c-item-id="amzn1.asin.1.B0CBGY8J9Y" data-csa-op-log-render="" data-csa-c-type="item" data-csa-c-id="2hnfps-h7yxod-uqeq1b-xo95k" data-cel-widget="MAIN-SEARCH_RESULTS-3">
+                    <div class="col-8 qs-asin">
+                      <span class="qs-value">B0CBGY8J9Y</span>
+                      <span class="qs-copy" aria-label="クリックでASINをコピー" data-microtip-position="top" role="tooltip">
+                        <svg class="svg-inline--fa fa-copy fa-w-14 qs-btn qs-icon text-qs-orange" aria-hidden="true" focusable="false" data-prefix="far" data-icon="copy" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M433.941 65.941l-51.882-51.882A48 48 0 0 0 348.118 0H176c-26.51 0-48 21.49-48 48v48H48c-26.51 0-48 21.49-48 48v320c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48v-48h80c26.51 0 48-21.49 48-48V99.882a48 48 0 0 0-14.059-33.941zM266 464H54a6 6 0 0 1-6-6V150a6 6 0 0 1 6-6h74v224c0 26.51 21.49 48 48 48h96v42a6 6 0 0 1-6 6zm128-96H182a6 6 0 0 1-6-6V54a6 6 0 0 1 6-6h106v88c0 13.255 10.745 24 24 24h88v202a6 6 0 0 1-6 6zm6-256h-64V48h9.632c1.591 0 3.117.632 4.243 1.757l48.368 48.368a6 6 0 0 1 1.757 4.243V112z"></path></svg><!-- <i class="qs-btn qs-icon far fa-copy text-qs-orange"></i> Font Awesome fontawesome.com -->
+                      </span>
+                    </div>
+</div>
+
+
+<div data-asin="B0CQMVJBSM" data-index="4" data-uuid="ebe2f40e-1901-4082-842b-704baa43e255" data-component-type="s-search-result" class="sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-20" data-component-id="19" style="background-color: rgb(221, 221, 221);" data-cel-widget="search_result_3"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-4" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-results_3" data-csa-c-pos="3" data-csa-c-item-id="amzn1.asin.1.B0CQMVJBSM" data-csa-op-log-render="" data-csa-c-type="item" data-csa-c-id="34r2rx-34ya6g-wlplp0-y05erc" data-cel-widget="MAIN-SEARCH_RESULTS-4">
+                      <div class="col-8 qs-asin">
+                        <span class="qs-value">B0CQMVJBSM</span>
+                        <span class="qs-copy" aria-label="クリックでASINをコピー" data-microtip-position="top" role="tooltip">
+                          <svg class="svg-inline--fa fa-copy fa-w-14 qs-btn qs-icon text-qs-orange" aria-hidden="true" focusable="false" data-prefix="far" data-icon="copy" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M433.941 65.941l-51.882-51.882A48 48 0 0 0 348.118 0H176c-26.51 0-48 21.49-48 48v48H48c-26.51 0-48 21.49-48 48v320c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48v-48h80c26.51 0 48-21.49 48-48V99.882a48 48 0 0 0-14.059-33.941zM266 464H54a6 6 0 0 1-6-6V150a6 6 0 0 1 6-6h74v224c0 26.51 21.49 48 48 48h96v42a6 6 0 0 1-6 6zm128-96H182a6 6 0 0 1-6-6V54a6 6 0 0 1 6-6h106v88c0 13.255 10.745 24 24 24h88v202a6 6 0 0 1-6 6zm6-256h-64V48h9.632c1.591 0 3.117.632 4.243 1.757l48.368 48.368a6 6 0 0 1 1.757 4.243V112z"></path></svg><!-- <i class="qs-btn qs-icon far fa-copy text-qs-orange"></i> Font Awesome fontawesome.com -->
+                        </span>
+                      </div>
+</div>
+"""
+#成功イメージ"""
+・data-index="3" 　の　span class="qs-copy" 　をクリックしたら　B0CBGY8J9Y　が出力する
+・data-index="4" 　の　span class="qs-copy" 　をクリックしたら　B0CQMVJBSM　が出力する
+"""
+
+
+
+
