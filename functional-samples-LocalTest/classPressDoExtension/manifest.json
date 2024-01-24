@@ -8,9 +8,15 @@
             "matches": ["https://*.nytimes.com/*",
                         "file:///*"
                     ],
-            "js": ["content-script.js"]
+            "js": [
+                "background.js",
+                "content-script.js"
+            ]
         }
-    ]
+    ],
+    "background": {
+        "service_worker": "background.js"
+    }
 } 
 
 
