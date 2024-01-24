@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sample Page</title>
+<!-- <script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    // クラス名が 'a-price-whole' の要素に対してクリックイベントを設定
+    document.querySelectorAll('.a-price-whole').forEach(element => {
+      element.addEventListener('click', function() {
+        // クリックされた要素のテキストをコンソールに表示
+        console.log(this.innerText);
+      });
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    // クラス名が 'a-price-whole' の要素に対してクリックイベントを設定
+    document.querySelectorAll('.a-color-base').forEach(element => {
+      element.addEventListener('click', function() {
+        // クリックされた要素のテキストをコンソールに表示
+        console.log(this.innerText);
+        
+        var priceElement = document.querySelector('.a-price-whole');
+        if (priceElement) {
+            // 要素のテキスト内容をコンソールに表示
+            console.log(priceElement.textContent);
+        }
+
+      });
+    });
+  });
+</script> -->
+
+</head>
+<body>
+  <span aria-hidden="true">
+    <span class="a-price-symbol">￥</span>
+    <!-- クリックイベントが有効な要素 -->
+    <span class="a-price-whole">5,194</span>
+    <span class="a-color-base a-text-bold">明日中1月25日</span>
+  </span>
+</body>
+</html>
